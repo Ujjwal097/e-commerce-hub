@@ -93,11 +93,11 @@ public class EmailService {
                 System.out.println("========================================================================");
                 return true;
             } catch (Exception e) {
-                System.err.println(">>> [EMAIL SEND FAILED] Could not send live email: " + e.getMessage());
+                System.err.println(">>> [EMAIL SEND FAILED] Could not send live email to " + toEmail + ": " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             System.out.println(">>> [EMAIL SIMULATION] Live SMTP not configured in application.properties.");
-            System.out.println(">>> (Add Gmail App Password to 'spring.mail.password' to enable instant live inbox delivery)");
         }
 
         return false;
