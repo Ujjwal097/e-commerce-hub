@@ -1,13 +1,13 @@
-# Build stage for Spring Boot backend
-FROM maven:3.9.6-eclipse-temurin-17 AS build
+# Build stage with Java 21
+FROM maven:3.9.6-eclipse-temurin-21 AS build
 WORKDIR /app
 COPY e-commerce_backend/pom.xml .
 RUN mvn dependency:go-offline -B
 COPY e-commerce_backend/src ./src
 RUN mvn clean package -DskipTests
 
-# Run stage
-FROM eclipse-temurin:17-jre-alpine
+# Run stage with Java 21 JRE
+FROM eclipse-temurin:21-jre-alpine
 WORKDIR /app
 COPY --from=build /app/target/*.jar app.jar
 EXPOSE 8080
