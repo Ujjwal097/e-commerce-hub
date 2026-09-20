@@ -1,16 +1,23 @@
 package com.lumina.ecommerce.service;
 
-import com.lumina.ecommerce.dto.*;
-import com.lumina.ecommerce.entity.OtpEntity;
-import com.lumina.ecommerce.entity.UserEntity;
-import com.lumina.ecommerce.repository.OtpRepository;
-import com.lumina.ecommerce.repository.UserRepository;
-import org.springframework.stereotype.Service;
-
 import java.time.Instant;
 import java.util.Optional;
 import java.util.Random;
 import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.lumina.ecommerce.dto.AuthResponse;
+import com.lumina.ecommerce.dto.SendOtpRequest;
+import com.lumina.ecommerce.dto.SendOtpResponse;
+import com.lumina.ecommerce.dto.SignupRequest;
+import com.lumina.ecommerce.dto.UpdateUsernameRequest;
+import com.lumina.ecommerce.dto.VerifyOtpRequest;
+import com.lumina.ecommerce.dto.VerifySignupRequest;
+import com.lumina.ecommerce.entity.OtpEntity;
+import com.lumina.ecommerce.entity.UserEntity;
+import com.lumina.ecommerce.repository.OtpRepository;
+import com.lumina.ecommerce.repository.UserRepository;
 
 @Service
 public class AuthService {

@@ -833,11 +833,14 @@ export class LoginComponent implements OnInit, OnDestroy {
     const type = cleanId.includes('@') ? 'email' : 'phone';
 
     this.authService.sendOtp(cleanId, type, 'customer', undefined, 'signin').subscribe({
-      next: () => {
+      next: (res: any) => {
         this.isLoading.set(false);
         this.isStepOtp.set(true);
-        this.otpCode = '';
+        this.otpCode = res.otp || '';
         this.startCountdown(120);
+        if (res.otp) {
+          this.toastService.success(`Verification OTP: ${res.otp}`, '🔐 Code Generated');
+        }
       },
       error: err => {
         this.isLoading.set(false);
@@ -884,11 +887,14 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     this.isLoading.set(true);
     this.authService.initiateSignup(payload).subscribe({
-      next: () => {
+      next: (res: any) => {
         this.isLoading.set(false);
         this.isStepOtp.set(true);
-        this.otpCode = '';
+        this.otpCode = res.otp || '';
         this.startCountdown(120);
+        if (res.otp) {
+          this.toastService.success(`Verification OTP: ${res.otp}`, '🔐 Code Generated');
+        }
       },
       error: err => {
         this.isLoading.set(false);
